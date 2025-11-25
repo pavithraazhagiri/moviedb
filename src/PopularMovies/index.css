@@ -1,0 +1,10 @@
+.movies-container {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.movies-ul-list {
+  list-style-type: none;
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+}

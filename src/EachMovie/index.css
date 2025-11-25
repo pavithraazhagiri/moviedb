@@ -1,0 +1,33 @@
+.each-movie-container {
+  margin-right: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 150px;
+  margin-bottom: 20px;
+  box-shadow: 1px 1px 5px rgb(190, 186, 186);
+}
+
+.each-movie-title {
+  font-family: 'Roboto';
+  font-size: 20px;
+  padding: 10px;
+  margin: 0;
+}
+.each-movie-image {
+  width: 150px;
+}
+.each-movie-rating-container {
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
+.each-movie-rating {
+  font-family: 'Roboto';
+  font-size: 15px;
+  margin-right: 4px;
+}
+.each-movie-button {
+  cursor: pointer;
+  padding-left: 10px;
+}
