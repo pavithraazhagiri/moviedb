@@ -1,0 +1,11 @@
+.pagination-buttons-container {
+  display: flex;
+  justify-content: center;
+}
+.pagination-page-number {
+  margin: 0;
+  font-family: 'Roboto';
+  font-size: 18px;
+  padding-left: 10px;
+  padding-right: 10px;
+}

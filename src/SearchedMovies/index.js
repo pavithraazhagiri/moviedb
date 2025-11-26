@@ -1,9 +1,10 @@
 import {Component} from 'react'
 import EachMovie from '../EachMovie'
+import PaginationButtons from '../PaginationButtons'
 import './index.css'
 
 class SearchedMovies extends Component {
-  state = {searchedMoviesList: []}
+  state = {searchedMoviesList: [], pageNumber: 1}
 
   componentDidMount() {
     console.log('componentDidMount')
@@ -43,7 +44,8 @@ class SearchedMovies extends Component {
     const {match} = this.props
     const {params} = match
     const {searchInput} = params
-    const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${searchInput}&page=1`
+    const {pageNumber} = this.state
+    const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${searchInput}&page=${pageNumber}`
     const response = await fetch(url)
     const responseData = await response.json()
     const {results} = responseData
@@ -56,11 +58,32 @@ class SearchedMovies extends Component {
     this.setState({searchedMoviesList})
   }
 
+  increasePageNumber = () => {
+    this.setState(
+      prevState => ({pageNumber: prevState.pageNumber + 1}),
+      this.getSearchedMovies,
+    )
+  }
+
+  decreasePageNumber = () => {
+    this.setState(
+      prevState => ({pageNumber: prevState.pageNumber - 1}),
+      this.getSearchedMovies,
+    )
+  }
+
   render() {
-    const {searchedMoviesList} = this.state
+    const {searchedMoviesList, pageNumber} = this.state
     console.log('render')
+    const disabledValue = pageNumber === 1
     return (
       <div className="movies-container">
+        <PaginationButtons
+          pageNumber={pageNumber}
+          disabledValue={disabledValue}
+          increasePageNumber={this.increasePageNumber}
+          decreasePageNumber={this.decreasePageNumber}
+        />
         <ul className="movies-ul-list">
           {searchedMoviesList.map(eachMovieDetails => (
             <EachMovie
