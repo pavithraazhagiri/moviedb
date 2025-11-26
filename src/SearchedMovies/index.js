@@ -3,6 +3,14 @@ import EachMovie from '../EachMovie'
 import PaginationButtons from '../PaginationButtons'
 import './index.css'
 
+const getPrevSearchInput = prevProps => {
+  const {match} = prevProps
+  const {params} = match
+  const {searchInput} = params
+  const prevSearchInput = searchInput
+  return prevSearchInput
+}
+
 class SearchedMovies extends Component {
   state = {searchedMoviesList: [], pageNumber: 1}
 
@@ -14,21 +22,13 @@ class SearchedMovies extends Component {
   componentDidUpdate(prevProps) {
     console.log('componentdidupdate')
     console.log(prevProps)
-    const prevSearchInput = this.getPrevSearchInput(prevProps)
+    const prevSearchInput = getPrevSearchInput(prevProps)
     const currentSearchInput = this.getCurrentSearchInput()
 
     if (prevSearchInput !== currentSearchInput) {
       console.log('inside condition of componentdidupdate')
       this.getSearchedMovies()
     }
-  }
-
-  getPrevSearchInput = prevProps => {
-    const {match} = prevProps
-    const {params} = match
-    const {searchInput} = params
-    const prevSearchInput = searchInput
-    return prevSearchInput
   }
 
   getCurrentSearchInput = () => {
